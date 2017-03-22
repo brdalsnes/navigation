@@ -52,7 +52,7 @@ R = 6378000;
 
 %Ex8
 [bearing, distance_l] = loxodrome(new_york, london, R);
-n = norm(distance_v - distance_l)
+n = norm(distance_v - distance_l);
 
 
 
