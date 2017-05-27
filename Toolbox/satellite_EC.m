@@ -22,10 +22,10 @@ time = time_fixer(213984, 1693, 0);
 
 %3
 r1 = [4918526.668, -791212.115, 3969767.140]; %WGS 84
-%table_tx = generate_satellite_table_tx(file, time);
+table_tx = generate_satellite_table_tx(file, time, r1);
 
 %4
-cos_table = generate_cos_table(file, time);
+%cos_table = generate_cos_table(file, time);
 
 %5
 %az_el_table = generate_az_el_table(file, time, r1, a, f);

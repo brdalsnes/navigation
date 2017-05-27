@@ -1,6 +1,10 @@
-function [ ] = plot_ranges( file, time, interval, r1, el_limit, a, f )
+function [ ] = plot_pseudo_ranges( file, time, interval, r1, el_limit, offset, drift, a, f  )
+%Takes offset and drift in seconds
+
+c = 299792458;
 
 ranges = zeros(9, interval);
+pseudo_ranges = zeros(9, interval);
 svns = zeros(1, 9);
 
 counter = 1;
@@ -28,14 +32,21 @@ while ischar(tline)
     tline = fgetl(file);
 end
 
-ranges
-
-%Ranges
-[rows, ~] = size(ranges);
+%Pseudo ranges
+[rows, columns] = size(ranges);
 for i = 1:rows
-    plot(ranges(i,:));
+    for j = 1:columns
+        pseudo_ranges(i,j) = ranges(i,j) + (offset + drift*(j-1))*c;
+    end
+end
+
+for i = 1:rows
+    plot(pseudo_ranges(i,:));
     info{i} = num2str(svns(i));
     hold on
 end
 legend(info);
+
+
+end
 
